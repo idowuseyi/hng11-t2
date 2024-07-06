@@ -26,6 +26,19 @@ app.post('/auth/register', async (req, res) => {
       errors: error.details.map(err => ({ field: err.context.key, message: err.message }))
     });
 
+    const { firstName, lastName, email, password, phone } = req.body;
+
+    // Check if user already exists
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    if (existingUser) {
+      return res.status(422).json({
+        errors: [{ field: 'email', message: 'Email already in use' }],
+      });
+    }
+
     const hashedPassword = await bcrypt.hash(value.password, 10);
 
     const newUser = await prisma.user.create({
