@@ -12,5 +12,5 @@
       "dest": "/src/index.js"
     }
   ],
-  "buildCommand": "npm run build"
+  "buildCommand": "npm install && prisma generate && npm run start"
 }
