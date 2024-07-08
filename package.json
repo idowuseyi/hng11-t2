@@ -4,6 +4,7 @@
   "description": "HNG11 T2 User & Organisation",
   "main": "index.js",
   "scripts": {
+    "postinstall": "prisma generate",
     "test": "jest --detectOpenHandles",
     "build": "npm install && prisma generate && npm run start",
     "start": "node ./src/index.js"
