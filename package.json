@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
-    "build": "nodemon ./src/index.js",
-    "start": "nodemon ./src/index.js"
+    "build": "npm install && prisma generate && npm run start",
+    "start": "node ./src/index.js"
   },
   "author": "Oluwaseyi Idowu",
   "license": "ISC",
