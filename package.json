@@ -4,8 +4,9 @@
   "description": "HNG11 T2 User & Organisation",
   "main": "index.js",
   "scripts": {
+    "postinstall": "prisma migrate",
     "test": "jest --detectOpenHandles",
-    "build": "npx prisma generate && npx prisma migrate deploy",
+    "build": "npx prisma generate && npx prisma migrate deploy && npm run start && npm run postinstall ",
     "start": "node ./src/index.js"
   },
   "author": "Oluwaseyi Idowu",
