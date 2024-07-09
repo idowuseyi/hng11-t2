@@ -2,9 +2,11 @@ const express = require('express');
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 const { userSchema, orgSchema } = require('./validations/validationSchemas');
 const authenticateToken = require('./middlewares/authenticateToken');
 const app = express();
+app.use(cors());
 require("dotenv").config();
 
 
@@ -59,7 +61,7 @@ app.post('/auth/register', async (req, res) => {
     });
 
     const token = jwt.sign({ userId: newUser.userId }, JWT_SECRET, { expiresIn: '1h' });
-    console.log(token);
+    // console.log(token);
 
     res.status(201).json({
       status: 'success',
@@ -93,7 +95,7 @@ app.post('/auth/login', async (req, res) => {
     if (!isPasswordValid) return res.status(401).json({ status: 'Bad request', message: 'Authentication failed', statusCode: 401 });
 
     const token = jwt.sign({ userId: user.userId }, JWT_SECRET, { expiresIn: '1h' });
-    console.log(token);
+    // console.log(token);
 
     res.json({
       status: 'success',
@@ -118,7 +120,7 @@ app.post('/auth/login', async (req, res) => {
 
 app.get('/api/users/:id', authenticateToken, async (req, res) => {
   const id = req.params.id;
-  console.log(id);
+  // console.log(id);
 
   try {
     const user = await prisma.user.findUnique({
