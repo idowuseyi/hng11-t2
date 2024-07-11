@@ -8,7 +8,7 @@ function authenticateToken(req, res, next) {
   if (token == null) return res.sendStatus(401); // No token, unauthorized
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    console.log(process.env.JWT_SECRET)
+    // console.log(process.env.JWT_SECRET)
     if (err) return res.sendStatus(403); // Invalid or expired token, forbidden
     req.user = user;
     next();

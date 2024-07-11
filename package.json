@@ -4,10 +4,10 @@
   "description": "HNG11 T2 User & Organisation",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npx prisma generate",
-    "test": "jest --detectOpenHandles",
-    "build": "npx prisma generate && npx prisma migrate deploy && npm run start && npm run postinstall",
-    "start": "node ./src/index.js"
+    "test": "jest --watch-all",
+    "vercel-build": "npx prisma generate && prisma migrate deploy",
+    "start": "node ./src/index.js",
+    "dev": "nodemon index.js"
   },
   "author": "Oluwaseyi Idowu",
   "license": "ISC",
@@ -21,11 +21,11 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "prisma": "^5.16.2"
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "prisma": "^5.16.2",
     "supertest": "^7.0.0"
   }
 }
